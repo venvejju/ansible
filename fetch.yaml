@@ -1,0 +1,9 @@
+---
+- hosts: web02
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Install application tree
+      fetch:
+        src: src_path
+        dest: dest_path

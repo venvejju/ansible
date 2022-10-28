@@ -1,0 +1,8 @@
+- hosts: all
+  order: reverse_inventory
+  tasks: 
+     - name: nginx uninstall
+       yum:
+          name: nginx
+          state: absent
+     

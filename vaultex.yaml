@@ -1,0 +1,7 @@
+- hosts: web02
+  become: yes
+  vars_files:
+    - vault.yml
+  tasks:
+    - name: creating user
+      command: useradd {{ username }}

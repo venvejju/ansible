@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: yes
+  tasks: 
+     - name: install java
+       yum: 
+          name: java-1.8.0-openjdk
+          state: installed
+     - name: install tomcat
+       get_url: 
+          url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.65/bin/apache-tomcat-9.0.65.tar.gz
+          dest: /root
+     - name: extract tomcat
+       unarchive:
+          src: /root/apache-tomcat-9.0.65.tar.gz
+          dest: /root
+          remote_src: true
+     - name: start tomcat
+       shell: nohup /root/apache-tomcat-9.0.65/bin/startup.sh
+     

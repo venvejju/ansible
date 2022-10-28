@@ -1,0 +1,13 @@
+---
+- hosts: web02
+  become: yes
+  gather_facts: false
+  tasks:
+   # - name: create file name xyz
+   #   shell: touch abcde
+    - name: Change file ownership, group and permissions
+      file:
+        path: /root/abcde
+        owner: root
+        group: root
+        mode: '100'

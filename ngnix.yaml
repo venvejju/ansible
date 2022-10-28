@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: yes
+  order: reverse_inventory
+  gather_facts: false
+  tasks:
+    - name: install nginx
+      yum:
+         name: nginx
+         state: present
+      notify: 
+         - restart nginx
+    - name: start nginx
+      service:
+         name: nginx
+         state: started
+     
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
